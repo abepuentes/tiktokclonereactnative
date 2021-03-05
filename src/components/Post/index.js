@@ -14,7 +14,6 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Fontisto from 'react-native-vector-icons/Fontisto';
-import {UserInterfaceIdiom} from 'expo-constants';
 
 const Post = ({post}) => {
   const video = React.useRef(null);
