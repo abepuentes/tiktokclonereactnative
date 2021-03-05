@@ -1,5 +1,11 @@
 import React from 'react';
-import {Image, Text, TouchableWithoutFeedback, View} from 'react-native';
+import {
+  Image,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 
 import {Video} from 'expo-av';
 import styles from './styles';
@@ -12,11 +18,18 @@ import {UserInterfaceIdiom} from 'expo-constants';
 
 const Post = ({post}) => {
   const video = React.useRef(null);
+  const [isLiked, setIsLiked] = React.useState(false);
+  const [curPost, setCurPost] = React.useState(post);
   const [status, setStatus] = React.useState({});
   const [paused, setPaused] = React.useState(true);
 
   const onPlayPausePress = () => {
     setPaused(!paused);
+  };
+  const onLikePress = () => {
+    const likesToAdd = isLiked ? -1 : 1;
+    setCurPost({...curPost, likes: curPost.likes + likesToAdd});
+    setIsLiked(!isLiked);
   };
   return (
     <View style={styles.container}>
@@ -41,10 +54,16 @@ const Post = ({post}) => {
                   uri: post.user.imageUri,
                 }}
               />
-              <View style={styles.iconContainer}>
-                <AntDesign name={'heart'} size={35} color="white" />
-                <Text style={styles.statsLabel}>{post.likes}</Text>
-              </View>
+              <TouchableOpacity
+                style={styles.iconContainer}
+                onPress={onLikePress}>
+                <AntDesign
+                  name={'heart'}
+                  size={35}
+                  color={isLiked ? 'red' : 'white'}
+                />
+                <Text style={styles.statsLabel}>{curPost.likes}</Text>
+              </TouchableOpacity>
               <View style={styles.iconContainer}>
                 <FontAwesome name={'commenting'} size={35} color="white" />
                 <Text style={styles.statsLabel}>{post.comments}</Text>
