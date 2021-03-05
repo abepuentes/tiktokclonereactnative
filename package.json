@@ -10,6 +10,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-navigation/bottom-tabs": "^5.11.8",
+    "@react-navigation/native": "^5.9.3",
     "expo-av": "^9.0.0",
     "expo-constants": "^10.0.1",
     "react": "16.13.1",
