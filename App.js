@@ -5,20 +5,21 @@
  * @format
  * @flow strict-local
  */
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import 'react-native-gesture-handler';
 import React from 'react';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import {SafeAreaView, StyleSheet, StatusBar} from 'react-native';
 
-import Home from './src/screens/Home';
+import Navigation from './src/navigation';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 function App() {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <Home />
+      <StatusBar barStyle="light-content" />
+      <SafeAreaView style={{flex: 1, backgroundColor: 'black'}}>
+        <Navigation />
       </SafeAreaView>
     </>
   );
