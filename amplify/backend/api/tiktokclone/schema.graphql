@@ -1,15 +1,21 @@
-type Blog @model {
+type User @model {
   id: ID!
-  name: String!
-  posts: [Post] @connection(keyName: "byBlog", fields: ["id"])
+  username: String!
+  imageUri: String
+  email: String!
+  posts: [Post] @connection(keyName: "byUser", fields: ["id"])
 }
 
-type Post @model @key(name: "byBlog", fields: ["blogID"]) {
+type Post @model @key(name: "byUser", fields: ["userID"]) {
   id: ID!
-  title: String!
-  blogID: ID!
-  blog: Blog @connection(fields: ["blogID"])
+  videoUri: String!
+  description: String
+  userID: ID!
+  user: User @connection(fields: ["userID"])
   comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
+
+  songID: ID!
+  song: Song @connection(fields: ["songID"])
 }
 
 type Comment @model @key(name: "byPost", fields: ["postID", "content"]) {
@@ -17,4 +23,10 @@ type Comment @model @key(name: "byPost", fields: ["postID", "content"]) {
   postID: ID!
   post: Post @connection(fields: ["postID"])
   content: String!
+}
+
+type Song @model {
+  id: ID!
+  songName: String!
+  imageUri: String
 }
