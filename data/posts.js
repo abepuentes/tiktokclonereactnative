@@ -3,11 +3,11 @@ export default [
     id: 'p1',
     user: {
       id: 'u1',
-      username: 'daviddobrik',
+      username: 'cbastian',
       imageUri:
         'https://wwd.com/wp-content/uploads/2020/10/AE4A7501.jpg?crop=366px%2C407px%2C1303px%2C870px&resize=640%2C415',
     },
-    description: 'hahahah oh boy @borat',
+    description: 'mi nombre es Cesar González',
     songName: 'NF - The search',
     songImage:
       'https://wwd.com/wp-content/uploads/2020/10/AE4A7501.jpg?crop=366px%2C407px%2C1303px%2C870px&resize=640%2C415',
