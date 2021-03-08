@@ -3,6 +3,7 @@ type User @model {
   username: String!
   imageUri: String
   email: String!
+  phone: String
   posts: [Post] @connection(keyName: "byUser", fields: ["id"])
 }
 

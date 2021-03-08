@@ -30,6 +30,7 @@ const Post = ({post}) => {
     setCurPost({...curPost, likes: curPost.likes + likesToAdd});
     setIsLiked(!isLiked);
   };
+
   return (
     <View style={styles.container}>
       <TouchableWithoutFeedback onPress={onPlayPausePress}>
@@ -65,7 +66,7 @@ const Post = ({post}) => {
               </TouchableOpacity>
               <View style={styles.iconContainer}>
                 <FontAwesome name={'commenting'} size={35} color="white" />
-                <Text style={styles.statsLabel}>{post.comments}</Text>
+                <Text style={styles.statsLabel}>{post.comments.content}</Text>
               </View>
               <View style={styles.iconContainer}>
                 <Fontisto name={'share-a'} size={28} color="white" />
@@ -84,7 +85,7 @@ const Post = ({post}) => {
               <Image
                 style={styles.songImage}
                 source={{
-                  uri: post.songImage,
+                  uri: post.song.imageUri,
                 }}
               />
             </View>
