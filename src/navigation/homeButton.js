@@ -6,6 +6,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Home from '../screens/Home';
+import Camera from '../screens/Camera';
 
 import plusIcon from '../assets/images/plus-icon.png';
 import Search from '../screens/Search';
@@ -41,7 +42,7 @@ const homeButton = () => {
       />
       <Tab.Screen
         name={'Upload'}
-        component={Home}
+        component={Camera}
         options={{
           tabBarIcon: ({color}) => (
             <Image
