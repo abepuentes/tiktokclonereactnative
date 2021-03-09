@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   Image,
   Text,
@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import {Storage} from 'aws-amplify';
 
 import {Video} from 'expo-av';
 import styles from './styles';
@@ -21,6 +22,7 @@ const Post = ({post}) => {
   const [curPost, setCurPost] = React.useState(post);
   const [status, setStatus] = React.useState({});
   const [paused, setPaused] = React.useState(true);
+  const [videoUri, setVideoUri] = React.useState('');
 
   const onPlayPausePress = () => {
     setPaused(!paused);
@@ -31,6 +33,17 @@ const Post = ({post}) => {
     setIsLiked(!isLiked);
   };
 
+  useEffect(() => {
+    const getVideoUri = async () => {
+      if (post.videoUri.startsWith('http')) {
+        setVideoUri(post.videoUri);
+      }
+      setVideoUri(await Storage.get(post.videoUri));
+    };
+
+    getVideoUri();
+  }, [post.videoUri]);
+
   return (
     <View style={styles.container}>
       <TouchableWithoutFeedback onPress={onPlayPausePress}>
@@ -38,9 +51,7 @@ const Post = ({post}) => {
           <Video
             ref={video}
             style={styles.video}
-            source={{
-              uri: post.videoUri,
-            }}
+            source={{uri: videoUri}}
             shouldPlay={paused}
             resizeMode="cover"
             isLooping
@@ -51,7 +62,7 @@ const Post = ({post}) => {
               <Image
                 style={styles.profilePicture}
                 source={{
-                  uri: post.user.imageUri,
+                  uri: videoUri,
                 }}
               />
               <TouchableOpacity
